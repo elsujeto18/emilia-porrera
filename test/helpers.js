@@ -34,7 +34,7 @@ const actores_Iniciales = [
         "address": "Calle Torreblanca",
         "trips": ["6219fe03d6e229826747ebc7","6219fe03d6e229826747ebc9"],
         "applications": [],
-        "ban": true,
+        "ban": false,
         "search_criteria": [],
         "sponsorships": [],
         "validated": false,
@@ -46,6 +46,24 @@ const actores_Iniciales = [
             "SPONSOR"
         ],
         "name": "ANthoniy",
+        "surname": "Martial",
+        "email": "antonioMartial12311211@gmail.com",
+        "phone": "623154881",
+        "address": "Calle Torreblanca",
+        "trips": ["6219fe03d6e229826747ebc7","6219fe03d6e229826747ebc9"],
+        "applications": [],
+        "ban": true,
+        "search_criteria": [],
+        "sponsorships": [],
+        "validated": false,
+        "preferred_language": "English"
+    },
+    {
+        "password": "kdfnaosnffdsfdspa",
+        "role": [
+            "SPONSOR"
+        ],
+        "name": "Prueba brallan",
         "surname": "Martial",
         "email": "antonioMartial12311211@gmail.com",
         "phone": "623154881",

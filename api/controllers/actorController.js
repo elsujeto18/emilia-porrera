@@ -138,22 +138,28 @@ exports.update_a_verified_actor = function (req, res) {
 }
 
 exports.ban_an_actor = function (req, res) {
-  try {
-    let actor =  Actor.findOne({ _id: req.params.actorId })
-    if (actor) {
-        if (actor.banned) {
-            res.status(400).json({ message: "Actor already banned" });
-        }else{
-            actor = Actor.findOneAndUpdate({ _id: req.params.actorId }, { banned: true }, { new: true })
-            res.status(200).json(actor);
-        }
+  Actor.findById(req.params.actorId, async function (err, actor) {
+    if (err) {
+      res.status(404).send(err);
     } else {
-        res.status(404).json({ message: "Actor not found" });
-    }
-} catch (err) {
-    req.err = err;
-  
-}
+      if (!actor) {
+        res.status(404).send("Actor not found");
+      } else if (actor.ban) {
+        res.status(404).send("Actor already banned");
+      } else {
+
+        
+          Actor.findOneAndUpdate({ _id: req.params.actorId }, { ban: true }, { new: true }, function (err, actor) {
+            if (err) {
+              res.status(400).send(err)
+            } else {
+              res.status(200).json(actor)
+            }
+          })
+        }
+      }
+    
+  });
 }
 
 exports.unban_an_actor = function (req, res) {

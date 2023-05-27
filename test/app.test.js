@@ -49,7 +49,7 @@ const { exec } = require("child_process");
 jest.setTimeout(15000);
 
 
-  beforeEach(async()=>{
+  beforeAll(async()=>{
     await Actor.deleteMany({},{ wtimeout: 30000 });
     await Trip.deleteMany({},{ wtimeout: 30000 });
     await Application.deleteMany({},{ wtimeout: 30000 });
@@ -181,8 +181,8 @@ test(`ERROR - Ban Actor by ID`, async() => {
   
   return await api
     .put(`/actors/${actorsId._id}/ban`)
-    .expect(400)
-    .expect('Content-Type', /application\/json/)
+    .expect(404)
+    
 
     
 })
@@ -191,7 +191,7 @@ test(`UnBan Actor by ID`, async() => {
 
   const {response:primeraResponse} = await getActors();
   const {body:actors} = primeraResponse;
-  const actorsId = actors[1];
+  const actorsId = actors[3];
   
   return await api
     .put(`/actors/${actorsId._id}/unban`)
